@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_gemini/google_gemini.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
-const apiKey = _apikey;
+const apiKey = _api_key;
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       //darkTheme: ThemeData.dark(),
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigoAccent),
         useMaterial3: true,
       ),
       home: const MyHomePage(),
@@ -42,10 +43,21 @@ class _MyHomePageState extends State<MyHomePage> {
         initialIndex: 0,
         length: 2,
         child: Scaffold(
+            //backgroundColor: Colors.black,
             appBar: AppBar(
-              title: const Text("PlantSense"),
-              backgroundColor: Colors.greenAccent,
+              title: const Text(
+                "PlantSense 🌱",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontFamily: "Fredoka",
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              backgroundColor: Colors.lightGreenAccent,
               centerTitle: true,
+              systemOverlayStyle: const SystemUiOverlayStyle(
+                statusBarBrightness: Brightness.dark,
+              ),
               bottom: const TabBar(
                 tabs: [
                   Tab(text: "PlantDoc"),
@@ -246,7 +258,7 @@ Your role is pivotal in ensuring the health and productivity of plants. Proceed 
       setState(() {
         loading = false;
         textAndImageChat
-            .add({"role": "Gemini", "text": value.text, "image": ""});
+            .add({"role": "Onion", "text": value.text, "image": ""});
       });
       scrollToTheEnd();
     }).onError((error, stackTrace) {
